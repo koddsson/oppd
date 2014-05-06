@@ -1,0 +1,5 @@
+cmake_minimum_required (VERSION 2.6)
+project (Tutorial)
+FILE(GLOB_RECURSE c_files "src/*.c")
+add_executable(foo ${c_files})
+target_link_libraries(foo check)
