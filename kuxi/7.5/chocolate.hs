@@ -13,19 +13,7 @@ processCase n c m = inner (n `div` c) 0
             where extra = t `div` m - e
 
 
-outputResults :: [Int] -> IO()
-outputResults [] = return()
-outputResults (r:rs) = do
-    print r
-    outputResults rs
-
-
 main :: IO()
 main = do
-    f <- getArgs
     contents <- getContents
-    let lst = map read . words $ contents
-    let ncase = head lst
-    let cases = drop 1 lst
-    let results = processCases cases
-    outputResults results
+    mapM_ print . processCases . map read . drop 1 . words $ contents
