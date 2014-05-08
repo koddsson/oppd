@@ -1,10 +1,16 @@
 012 is the counter from 999 down to 0
 3456789 10 11 12 13 14 15 are temp numbers
 16 and up is sum backwards (1234 will be 4321 in memory)
+first number will be 999 into the sum so the fourth number (20)
+will be an end of memory character (20)=10 This character will
+be shifted as the sum increases in length and will be used to
+find out from where to start printing the solution in the end
 
 >>>+++++++++[<<<+>+>+>-] 9990{0_3} ;3
->>> ;6
-
+<----> DEBUG set to 995
+>>>>>>>>>>>>>>>>>       ;20
+--  (20)=254 EOF        ;20
+<<<<<<<<<<<<<<          ;6
 
 init (6)=(0)plus(1)plus(2)
 
@@ -63,23 +69,19 @@ init (6)=(0)plus(1)plus(2)
         <<4[-]>5[-]                 ;5
         <<3[>4+>5+<<3-]>4[<3+>4-]+  ;4
         >5[     ;5
-            >6[-]
-            ++++++++++
-            ++++++++++
-            ++++++++++
-            ++++++++++
-            ++++++++    48 in (6)
-            >[-]>[-]    0 in (7) and (8)
-            <<[>+>+<<-]> 0 in (6) 48 in (7) and (8) ;7
-            [<<<<<<<0+>+>+>>>>>-]   ;7
-            <<<<<<<.>.>.>>>>>>      ;8
-            [<<<<<<<<->->->>>>>>-]  ;8
-            ++++++++++. newline
+            (16) = (16) plus (2)
+            >6[-]   ;6
+            <<<<2[>>>>>>>>>>>>>>16+<<<<<<<<<<6+<<<<2-]          ;2
+            >>>>6[<<<<2+>>>>6-]         ;6
 
+            (17) = (17) plus (1)
+            <<<<<1[>>>>>>>>>>>>>>>>17+<<<<<<<<<<<6+<<<<<1-]     ;1
+            >>>>>6[<<<<<1+>>>>>6-]      ;6
 
-            print number
-            add to sum
-            <<<<-   ;4
+            (18) = (18) plus (0)
+            <<<<<<0[>>>>>>>>>>>>>>>>>>18+<<<<<<<<<<<<+<<<<<<0-] ;0
+            >>>>>>6[<<<<<<0+>>>>>>6-]   ;6
+            <<-   ;4
         >5[-]]    ;5
         <4[         ;3
         else:
@@ -122,6 +124,8 @@ init (6)=(0)plus(1)plus(2)
             >>12[<<<9->>>12[<<10+>>12-]]    ;12
             <<10[>>12-<<10-]                ;10
             <9[
+
+            ===TODO REMOVE BELOW
                 <<<<[-]        ;5
                 ++++++++++
                 ++++++++++
@@ -132,6 +136,8 @@ init (6)=(0)plus(1)plus(2)
                 <<<<<.>.>.>      ;3
                 [<-<-<->>>-]    ;3
                 ++++++++++. space   ;3
+
+            ===TODO REMOVE ABOVE
             >>>>>>9-]   ;9
         <<<<<4-]     ;4
                 
@@ -189,19 +195,75 @@ init (6)=(0)plus(1)plus(2)
             <<<<-   reduce (2) ;2
         >>>>-]          ;6
 
+SLED START
+(14)=11 to park sled after running
+goto (15)=1 and and start sled
+>>>>>>>>[-]-    (14)=255    ;14
+>[-]+                       ;15
+[
+    >      ;C
+SLED:
+    C = current
+    N = next
+    T = third
+    temp0   10 TTR
+    temp1   11 TTR
+    temp2   12 TTR
+    temp3   13 TTR
+
+    if C != EOF:
+    ++[     if C is 254 plusplus will set to 0
+        -- set back to what it was since it wasn't 254
+        
+        temp0 = 9
+        >>>>>>>>>>t0[-]+++++++++=9  ;t0
+        
+        temp1 = C
+        >>[-]t2<[-]t1       ;t1
+        <<<<<<<<<<<C[>>>>>>>>>>>+>+<<<<<<<<<<<<-]   ;C
+        >>>>>>>>>>>>[<<<<<<<<<<<<+>>>>>>>>>>>>-]    ;t2
+        #
+
+        temp0 = temp0 less temp1
+        
+        if temp0:
+            C minus 10
+            temp1 = EOF
+            temp1 = temp1 == N
+            if temp1:
+                T = N (N=0)
+            N increased by 1 
+    ]
+
+GOTO new C
+]     ;C
+
+
+SLED END
+
 <<<[-]>[-] (3) = (4) = 0   ;4
 
+TODO Fix result counters that are above 9
 (3) = (3) plus (2)
 <<[>+>+<<-] (3) = (4) = (2) and (2) = 0 ;2
 >>[<<+>>-]  (2) = (4) and (4) = 0       ;4
 
 (3) = (3) plus (1)
-<<<[>>+>+<<<-]  (3) = (3) plus (1) and (4) = (1) and (1) = 0 ;1
+<<<[>>+>+<<<-]  (3) = (3) plus (1) and (4) = (1) and (1) = 0    ;1
 >>>[<<<+>>>-]   (1) = (4) and (4) = 0   ;4
 
 (3) = (3) plus (1)
-<<<<[>>>+>+<<<<-] (3) = (3) plus (0) and (4) = (0) and (0) = 0 ;0
+<<<<[>>>+>+<<<<-] (3) = (3) plus (0) and (4) = (0) and (0) = 0  ;0
 >>>>[<<<<+>>>>-] (0) = (4) and (4) = 0  ;4
-< ;3
-]
+<] ;3
 
+>>>>>>>>>>>>[-]     ;15
+++++++++++
+++++++++++
+++++++++++
+++++++++++
+++++++++    (15)=48 ;15
+
+[>+>+>+>+>+>+<<<<<<-]
+>>>>>>
+.<.<.<.<.<.<
