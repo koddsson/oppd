@@ -12,6 +12,13 @@ find out from where to start printing the solution in the end
 --  (20)=254 EOF        ;20
 <<<<<<<<<<<<<<          ;6
 
+DEBUG START
+>>>>>>>>>>+++++++++
+>+++++++++
+>+++++++++
+<<<<<<<<<<<<
+DEBUG END
+
 init (6)=(0)plus(1)plus(2)
 
 <<[-]<[-]> (3) = (4) = 0   ;4
@@ -200,8 +207,8 @@ SLED START
 goto (15)=1 and and start sled
 >>>>>>>>[-]-    (14)=255    ;14
 >[-]+                       ;15
+>++ set first C (16) to be plusplus to check for EOF
 [
-    >      ;C
 SLED:
     C = current
     N = next
@@ -212,36 +219,71 @@ SLED:
     temp3   13 TTR
 
     if C != EOF:
-    ++[     if C is 254 plusplus will set to 0
+    [     if C is 254 plusplus will set to 0
         -- set back to what it was since it wasn't 254
         
-        temp0 = 9
-        >>>>>>>>>>t0[-]+++++++++=9  ;t0
+        temp0 = 10
+        >>>>>>>>>>t0[-]++++++++++=10  ;t0
         
         temp1 = C
         >>[-]t2<[-]t1       ;t1
         <<<<<<<<<<<C[>>>>>>>>>>>+>+<<<<<<<<<<<<-]   ;C
         >>>>>>>>>>>>[<<<<<<<<<<<<+>>>>>>>>>>>>-]    ;t2
-        #
-
-        temp0 = temp0 less temp1
         
-        if temp0:
-            C minus 10
-            temp1 = EOF
-            temp1 = temp1 == N
-            if temp1:
-                T = N (N=0)
-            N increased by 1 
+        temp2 = temp1 more or eq temp0
+        z=temp2
+        x=temp1
+        y=temp0
+        t0=temp3
+        t1=temp4
+
+        t2[-]>t3[-]>t4[-]           ;t4
+        <<<t1[>>t3+                 ;t3
+        <<<t0[->>>t3[-]>t4+<<<<t0]  ;t0
+        >>>t3[-<t2+>t3]             ;t3
+        >t4[-<<<<t0+>>>>t4]         ;t4
+        <<<<t0->t1-]                ;t1
+        
+        ======t2 in use
+        if temp2:
+        t1[-]<t0[-]                 ;t0
+        >>t2[<<t0+>t1+>t2-]<<t0[>>t2+<<t0-] ;t0
+        >t1[    ;t1
+            ======t1 in use
+            <<<<<<<<<<<                 ;C
+            ----------  C minus 10      ;C
+            >>>>>>>>>>[-]-- t0=EOF=254  ;t0
+            t2 = N
+            >>[-]<<<<<<<<<<<[>>>>>>>>>>>+>+<<<<<<<<<<<<-]   ;N
+            >>>>>>>>>>>>t3[<<<<<<<<<<<<N+>>>>>>>>>>>>-]<   ;t2
+
+            t0 = t0 == t2
+            <<t0[->>t2-<<t0]+>>t2[<<t0->>t2[-]]<<       ;t0
+            
+            if t0: (that means next is EOF and we need to move it)
+            ###
+            >>t2[-]>t3[-]                   ;t3
+            <<<t0[>>t2+>t3+<<<t0-]>>t2[<<t0+>>t2-]  ;t2
+            >t3[
+                ======t3 in use
+                T=N & N=0
+                <<<t0<<<<<<<<<N     ;N
+                [>T+<N-]            ;N
+            >>>>>>>>>>>t3[-]]       ;t3
+
+            N increased by 1
+            <<<<<<<<<<<<N+  ;N
+        >>>>>>>>>>t1[-]]
     ]
-
-GOTO new C
+<<<<<<<<<<++
 ]     ;C
-
-
+--  fix EOF
+park sled
+#
++[-<+]-     ;14
 SLED END
 
-<<<[-]>[-] (3) = (4) = 0   ;4
+<<<<<<<<<<<[-]>[-] (3) = (4) = 0   ;4
 
 TODO Fix result counters that are above 9
 (3) = (3) plus (2)
