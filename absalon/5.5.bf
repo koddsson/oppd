@@ -16,7 +16,8 @@ DEBUG START
 >>>>>>>>>>+++++++++
 >+++++++++
 >+++++++++
-<<<<<<<<<<<<
+>+++++++++
+<<<<<<<<<<<<<
 DEBUG END
 
 init (6)=(0)plus(1)plus(2)
@@ -206,76 +207,119 @@ SLED START
 (14)=11 to park sled after running
 goto (15)=1 and and start sled
 >>>>>>>>[-]-    (14)=255    ;14
->[-]+                       ;15
->++ set first C (16) to be plusplus to check for EOF
+                       ;15
+>>++ set first C (16) to be plusplus to check for EOF
+
+"""
+The sled starts by checking if the first number
+of the sum is the EOF / that is go to C=(16) and
+increment by 2 (since EOF is 254)
+"""
 [
 SLED:
-    C = current
-    N = next
-    T = third
-    temp0   10 TTR
-    temp1   11 TTR
-    temp2   12 TTR
-    temp3   13 TTR
+C = current
+N = next
+T = third
+temp0   10 T(o) T(he) R(ight)
+temp1   11 TTR
+temp2   12 TTR
+temp3   13 TTR
 
-    if C != EOF:
-    [     if C is 254 plusplus will set to 0
-        -- set back to what it was since it wasn't 254
-        
-        temp0 = 10
-        >>>>>>>>>>t0[-]++++++++++=10  ;t0
-        
-        temp1 = C
-        >>[-]t2<[-]t1       ;t1
-        <<<<<<<<<<<C[>>>>>>>>>>>+>+<<<<<<<<<<<<-]   ;C
-        >>>>>>>>>>>>[<<<<<<<<<<<<+>>>>>>>>>>>>-]    ;t2
-        
-        temp2 = temp1 more or eq temp0
-        z=temp2
-        x=temp1
-        y=temp0
-        t0=temp3
-        t1=temp4
+if C != EOF:
+    """
+    Since C wasn't EOF we decrement C by 2 again
+    """ 
+    -- set back to what it was since it wasn't 254
+    
+    """
+    Now we goto temp0 and set it to 10 / we need to
+    use an algorithm to check if C is currently 10 or
+    more so we can reduce C by 10 and then increment
+    N by 1
+    We set temp0 as 10 / temp1 as C since the algorithm
+    is destructive and finally use the algorithm:
+        temp2 = temp1 more or equal to temp0
+    """
 
-        t2[-]>t3[-]>t4[-]           ;t4
-        <<<t1[>>t3+                 ;t3
-        <<<t0[->>>t3[-]>t4+<<<<t0]  ;t0
-        >>>t3[-<t2+>t3]             ;t3
-        >t4[-<<<<t0+>>>>t4]         ;t4
-        <<<<t0->t1-]                ;t1
+    temp0 = 10
+    >>>>>>>>>>t0[-]++++++++++=10  ;t0
+    
+    temp1 = C
+    >>[-]t2<[-]t1       ;t1
+    <<<<<<<<<<<C[>>>>>>>>>>>+>+<<<<<<<<<<<<-]   ;C
+    >>>>>>>>>>>>[<<<<<<<<<<<<+>>>>>>>>>>>>-]    ;t2
+    
+    temp2 = temp1 more or eq temp0
+    t2[-]>t3[-]>t4[-]           ;t4
+    <<<t1[>>t3+                 ;t3
+    <<<t0[->>>t3[-]>t4+<<<<t0]  ;t0
+    >>>t3[-<t2+>t3]             ;t3
+    >t4[-<<<<t0+>>>>t4]         ;t4
+    <<<<t0->t1-]                ;t1
+    
+    """
+    Now if temp2 is true (that is C is more or equal to 10)
+    we need to reduce C by 10 and increment N by 1
+    """
+    ======t2 in use
+    if temp2:
+    t1[-]<t0[-]                 ;t0
+    >>t2[<<t0+>t1+>t2-]<<t0[>>t2+<<t0-] ;t0
+    >t1[    ;t1
+        """
+        C was more or equal to 10
+        """
+        ======t1 in use
+        <<<<<<<<<<<                 ;C
+        ----------  C minus 10      ;C
+
+        """
+        Before we increment N by 1 we first need to check N
+        is EOF / if it is EOF we move EOF to T and set N to 0
+        We do this by setting temp0 to EOF / temp2 to N and then 
+        using and algorithm that does temp0 = temp0 == temp2
+        """
+        >>>>>>>>>>[-]-- t0=EOF=254  ;t0
+        t2 = N
+        >>[-]<<<<<<<<<<<[>>>>>>>>>>>+>+<<<<<<<<<<<<-]   ;N
+        >>>>>>>>>>>>t3[<<<<<<<<<<<<N+>>>>>>>>>>>>-]<   ;t2
+
+        t0 = t0 == t2
+        <<t0[->>t2-<<t0]+>>t2[<<t0->>t2[-]]<<       ;t0
         
-        ======t2 in use
-        if temp2:
-        t1[-]<t0[-]                 ;t0
-        >>t2[<<t0+>t1+>t2-]<<t0[>>t2+<<t0-] ;t0
-        >t1[    ;t1
-            ======t1 in use
-            <<<<<<<<<<<                 ;C
-            ----------  C minus 10      ;C
-            >>>>>>>>>>[-]-- t0=EOF=254  ;t0
-            t2 = N
-            >>[-]<<<<<<<<<<<[>>>>>>>>>>>+>+<<<<<<<<<<<<-]   ;N
-            >>>>>>>>>>>>t3[<<<<<<<<<<<<N+>>>>>>>>>>>>-]<   ;t2
-
-            t0 = t0 == t2
-            <<t0[->>t2-<<t0]+>>t2[<<t0->>t2[-]]<<       ;t0
-            
-            if t0: (that means next is EOF and we need to move it)
-            ###
-            >>t2[-]>t3[-]                   ;t3
-            <<<t0[>>t2+>t3+<<<t0-]>>t2[<<t0+>>t2-]  ;t2
-            >t3[
-                ======t3 in use
-                T=N & N=0
-                <<<t0<<<<<<<<<N     ;N
-                [>T+<N-]            ;N
-            >>>>>>>>>>>t3[-]]       ;t3
-
-            N increased by 1
-            <<<<<<<<<<<<N+  ;N
-        >>>>>>>>>>t1[-]]
+        """
+        If temp0 is true / that means that N was EOF and we 
+        need to shift it to the right
+        """
+        if t0:
+        
+        >>t2[-]>t3[-]                   ;t3
+        <<<t0[>>t2+>t3+<<<t0-]>>t2[<<t0+>>t2-]  ;t2
+        >t3[
+            """
+            Here we simply increment N by 2 since 254 plus 2 = 0
+            and decrement set T=0 and decrement it by 2 to get
+            0 minus 2 = 254
+            """
+            ======t3 in use
+            T=N & N=0
+            <<<t0<<<<<<<<<N++   ;N
+            >T[-]--             ;T
+        >>>>>>>>>>t3[-]]       ;t3
+        """
+        We finally increase N by one and end the work for the 
+        'if C is more or equal to 10' part of the sled
+        """
+        <<<<<<<<<<<<N+  ;N
+        >>>>>>>>>>t1[-]
     ]
-<<<<<<<<<<++
+    """
+    We end the last loop on temp1 and need to go back to N
+    and increase it by 2 / that is / we're shifting C to N
+    (simply moving the sled by 1 to the right) and checking
+    if the current C (last N) is EOF
+    """
+    <<<<<<<<<<++
 ]     ;C
 --  fix EOF
 park sled
