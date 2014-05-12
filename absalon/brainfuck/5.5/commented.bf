@@ -2,25 +2,18 @@
 3456789 10 11 12 13 14 15 are temp numbers
 16 and up is sum backwards (1234 will be 4321 in memory)
 first number will be 999 into the sum so the fourth number (20)
-will be an end of memory character (20)=10 This character will
+will be an end of memory character (20)=254 This character will
 be shifted as the sum increases in length and will be used to
 find out from where to start printing the solution in the end
 
 >>>+++++++++[<<<+>+>+>-] 9990{0_3} ;3
-<----> DEBUG set to 995
 >>>>>>>>>>>>>>>>>       ;20
 --  (20)=254 EOF        ;20
 <<<<<<<<<<<<<<          ;6
 
-DEBUG START
->>>>>>>>>>+++++++++
->+++++++++
->+++++++++
->+++++++++
-<<<<<<<<<<<<<
-DEBUG END
-
-init (6)=(0)plus(1)plus(2)
+"""
+Initialize (6) as (0) plus (1) plus (2) !!! Find out why 
+"""
 
 <<[-]<[-]> (3) = (4) = 0   ;4
 
@@ -37,6 +30,11 @@ init (6)=(0)plus(1)plus(2)
 >>>>[<<<<+>>>>-] (0) = (4) and (4) = 0  ;4
 < ;3
 [
+    """
+    First check to see if the current number in the counter
+    is divisible by 5 / We do this by checking if the last
+    number is either 5 or 0
+    """
     [-]>[-]>[-]    (5) = 0 and (4) = 0 and (3) = 0     ;3
     <<<[>+>+>+<<<-]   (5) = (4) = (3) = (2) and (2) = 0   ;2
     >>>[<<<+>>>-]   (2) = (5)   ;5
@@ -66,7 +64,10 @@ init (6)=(0)plus(1)plus(2)
     >>>6[<<<3->>>6[-]]  ;6
     <<4[>>6+<5+<4-]>5[<4+>5-]   ;5
     >6[<<<3[-]->>>6[-]] ;6
-
+    """
+    If the last number was either 5 or 0 we will now
+    add that number to the total sum
+    """
     if (3):
         temp 3 in use
 
@@ -110,19 +111,6 @@ init (6)=(0)plus(1)plus(2)
             >[-]+++ (11)=3  ;11
             >[-]>[-]>[-]>[-]<<<<<< 12 to 15 = 0 ;9
 
-            divmod algo needs 7 temporary numbers
-                (9)=total
-                (10)=0
-                (11)=divideby
-                (12)=(13)=(14)=(15)=0
-
-                after
-                (9)=0
-                (10)=total
-                (11)=crap
-                (12)=mod
-                (13)=crap
-
             divmod from esolangs algos:
             [->+>-[>+>>]>[+[-<+>]>+>>]<<<<<<]   ;9
             
@@ -131,23 +119,23 @@ init (6)=(0)plus(1)plus(2)
             [-]+>[-] (9)=1 and (10)=0       ;10
             >>12[<<<9->>>12[<<10+>>12-]]    ;12
             <<10[>>12-<<10-]                ;10
-            <9[
+            <9[                             ;9
+                <<<    ;6
 
-            ===TODO REMOVE BELOW
-                <<<<[-]        ;5
-                ++++++++++
-                ++++++++++
-                ++++++++++
-                ++++++++++
-                ++++++++    (5)=48
-                [<<+<+<+<+>>>>>-] ;5
-                <<<<<.>.>.>      ;3
-                [<-<-<->>>-]    ;3
-                ++++++++++. space   ;3
+                (16) = (16) plus (2)
+                6[-]   ;6
+                <<<<2[>>>>>>>>>>>>>>16+<<<<<<<<<<6+<<<<2-]          ;2
+                >>>>6[<<<<2+>>>>6-]         ;6
 
-            ===TODO REMOVE ABOVE
-            >>>>>>9-]   ;9
-        <<<<<4-]     ;4
+                (17) = (17) plus (1)
+                <<<<<1[>>>>>>>>>>>>>>>>17+<<<<<<<<<<<6+<<<<<1-]     ;1
+                >>>>>6[<<<<<1+>>>>>6-]      ;6
+
+                (18) = (18) plus (0)
+                <<<<<<0[>>>>>>>>>>>>>>>>>>18+<<<<<<<<<<<<+<<<<<<0-] ;0
+                >>>>>>6[<<<<<<0+>>>>>>6-]   ;6
+            >>>9-]   ;9
+        <<<<<4-]        ;4
                 
             
     >[-] (5) = 0 (1)==0 check      ;5
@@ -157,22 +145,11 @@ init (6)=(0)plus(1)plus(2)
     <<2[>3+>4+<<2-]>3[<2+>3-]+  ;3
     >4[<3->4[-]]                ;4
     <3[                         ;3
-        #
+        
         <+++++++++ (2) = 9      ;2
         >>>>>>[-]   (8) = 0     ;8
         <<<<<<<[>>>>>>>+>+<<<<<<<<-] (8)=(9)=(1) and (1)=0  ;1
         >>>>>>>>[<<<<<<<<+>>>>>>>>-] (1)=(9) and (9)=0  ;9
-        
-        if (8):
-            reduce (1)
-        
-        else:
-            (1) = 9
-            reduce (0)
- 
-        0 = (6)
-        1 = (7)
-        x = (8) 
 
         if (8)
         <<<6[-]+>7[-]     ;7
@@ -242,14 +219,14 @@ if C != EOF:
     """
 
     temp0 = 10
-    >>>>>>>>>>t0[-]++++++++++=10  ;t0
+    >>>>>>>>>>t0[-]+++++++++=9  ;t0
     
     temp1 = C
     >>[-]t2<[-]t1       ;t1
     <<<<<<<<<<<C[>>>>>>>>>>>+>+<<<<<<<<<<<<-]   ;C
     >>>>>>>>>>>>[<<<<<<<<<<<<+>>>>>>>>>>>>-]    ;t2
     
-    temp2 = temp1 more or eq temp0
+    temp2 = temp1 more than temp0
     t2[-]>t3[-]>t4[-]           ;t4
     <<<t1[>>t3+                 ;t3
     <<<t0[->>>t3[-]>t4+<<<<t0]  ;t0
@@ -296,6 +273,7 @@ if C != EOF:
         >>t2[-]>t3[-]                   ;t3
         <<<t0[>>t2+>t3+<<<t0-]>>t2[<<t0+>>t2-]  ;t2
         >t3[
+            ####
             """
             Here we simply increment N by 2 since 254 plus 2 = 0
             and decrement set T=0 and decrement it by 2 to get
@@ -305,7 +283,7 @@ if C != EOF:
             T=N & N=0
             <<<t0<<<<<<<<<N++   ;N
             >T[-]--             ;T
-        >>>>>>>>>>t3[-]]       ;t3
+        >>>>>>>>>>>t3[-]]       ;t3
         """
         We finally increase N by one and end the work for the 
         'if C is more or equal to 10' part of the sled
@@ -323,7 +301,7 @@ if C != EOF:
 ]     ;C
 --  fix EOF
 park sled
-#
+
 +[-<+]-     ;14
 SLED END
 
@@ -343,6 +321,10 @@ TODO Fix result counters that are above 9
 >>>>[<<<<+>>>>-] (0) = (4) and (4) = 0  ;4
 <] ;3
 
+"""
+Print out the sum from memory
+"""
+
 >>>>>>>>>>>>[-]     ;15
 ++++++++++
 ++++++++++
@@ -350,6 +332,7 @@ TODO Fix result counters that are above 9
 ++++++++++
 ++++++++    (15)=48 ;15
 
-[>+>+>+>+>+>+<<<<<<-]
->>>>>>
-.<.<.<.<.<.<
+[>+>+>+>+>+>+<<<<<<-]   ;15
+>>>>>>               ;20
+.<.<.<.<.<.<.         ;15
+<14[-]++++++++++.   ;14
