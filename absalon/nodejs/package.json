@@ -1,0 +1,11 @@
+{
+    "name": "oppd-absalon",
+    "version": "0.0.1",
+    "description": "One problem per day in javascript/nodejs",
+    "main": "5.5.js",
+    "dependencies": {
+        "lodash-node": "~2.4.1"
+    },
+    "devDependencies": {},
+    "author": "Axel Örn"
+}

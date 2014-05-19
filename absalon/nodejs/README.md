@@ -2,6 +2,7 @@
 
 ## Dependancies
 You need to have nodejs installed - figure it out by yourself
+Also, `npm install` for dependencies
 
 ## Running solutions
 
